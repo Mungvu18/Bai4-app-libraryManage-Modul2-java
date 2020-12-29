@@ -16,12 +16,13 @@ public class MainTest {
     public static final String ENTER_YOUR_CHOICE = "Nhập lựa chọn của bạn ";
     public static final String ENTER_NAME_STUDENT = "Nhập tên sv ";
     public static final String ENTER_STUDENT_ID = "Nhập mã sv ";
-    public static final String ENTER_BIRTH_DAY_STUDENT = "Nhập ngày sinh sv ";
+    public static final String ENTER_BIRTH_DAY_STUDENT = "Nhập ngày sinh sv dd/MM/yyyy ";
     public static final String ENTER_CLASS_STUDENT = "Nhập lớp của sv ";
     public static final String ENTER_CARD_ID = "Nhập mã thẻ thư viện";
-    public static final String ENTER_BEGIN_DAY = "Nhập ngày mượn sách";
-    public static final String ENTER_RETURN_DAY = "Nhập ngày trả sách";
+    public static final String ENTER_BEGIN_DAY = "Nhập ngày mượn sách dd/MM/yyyy";
+    public static final String ENTER_RETURN_DAY = "Nhập ngày trả sách dd/MM/yyyy";
     public static final String ENTER_BOOK_CODE = "Nhập mã sách ";
+    public static final String SPACE = "----------------------------------------------------";
     static CardManage cardManage = new CardManage();
     static Scanner sc = new Scanner(System.in);
 
@@ -78,12 +79,16 @@ public class MainTest {
         String cardId = sc1.nextLine();
         System.out.println(ENTER_BEGIN_DAY);
         String beginDay = sc.nextLine();
-        System.out.println(ENTER_RETURN_DAY);
-        String returnDay = sc1.nextLine();
+        String returnDay ="";
+        do {
+            System.out.println(ENTER_RETURN_DAY);
+            returnDay = sc1.nextLine();
+        } while (returnDay.length()!=10);
         System.out.println(ENTER_BOOK_CODE);
         String bookCode = sc.nextLine();
         Student student = new Student(name,studentId,birthday,classOfStudent);
         Card card = new Card(student,cardId,beginDay,returnDay,bookCode);
         cardManage.addNew(cardId,card);
+        System.out.println(SPACE);
     }
 }
